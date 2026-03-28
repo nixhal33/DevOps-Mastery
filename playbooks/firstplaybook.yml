@@ -9,7 +9,6 @@
       state: directory
       owner: narendra
       group: nixhal
-      mode: '770'
 
   - name: Create an empty file
     file:
