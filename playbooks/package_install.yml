@@ -1,0 +1,23 @@
+---
+- hosts: worker
+  become: yes
+
+  tasks:
+  - name: Package Installation using yml
+    apt:
+      update_cache: yes
+
+  - name: Package Upgradable Upgrading
+    apt:
+      upgrade: dist
+
+  - name: Install Nginx Server
+    apt:
+      name: nginx
+      state: present
+
+  - name: Start & enable nginx services
+    service:
+      name: nginx
+      state: started
+      enabled: true

@@ -1,0 +1,18 @@
+---
+- hosts: all
+  become_user: root
+
+  tasks:
+  - name: Add new content into a file
+    lineinfile:
+      path: /etc/hosts
+      line: '192.168.1.121    www.nix.com'
+      insertafter: '127.0.1.1'
+
+  - name: Replace content
+    replace:
+      path: /etc/hosts
+      regexp: '192.168.1.121'
+      replace: '192.168.1.20'
+    tags:
+    - replace

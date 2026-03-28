@@ -1,0 +1,9 @@
+---
+- hosts: servers
+  become_user: root
+
+  tasks:
+  - name: Rsync a file from one machine to another 
+    synchronize:
+      src: /home/nixhal/mohabatte.lyric
+      dest: /home/nixhal/playbooks/

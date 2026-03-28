@@ -1,0 +1,13 @@
+---
+-  hosts: worker
+   become_user: root
+  
+  tasks:
+  - name: Rsyncing the entire directory from workernode to masternode
+    delegate_to: localhost
+    become: no
+    synchronize:
+      mode: pull
+      src: "/home/nixhal/songlyric/"
+      dest: "/home/nixhal/songlyrics/{{ inventory_hostname }}/"
+
