@@ -112,9 +112,6 @@ also new module today again: get_url using this module i downloaded maven for my
       url: "{{ maven }}"
       dest:  "{{ location }}"
 
-
-==================================================================================================================
-
 now in again today's  day 17  this session gonna be long one as i am today gonna deploy a webpage or website using nginx server using a single playbook. so i am gonna show here my entire playbook to start to end deployment of the website using nginx server.
 nixhal@master-node:~/playbooks/project_deploy$ cat deploy.yml 
 ---
