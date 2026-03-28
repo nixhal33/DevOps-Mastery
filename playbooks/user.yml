@@ -7,3 +7,8 @@
     group:
       name: sandarva
       state: absent
+
+  - name: Create user
+    user:
+      name: bhattarai
+      state: absent
