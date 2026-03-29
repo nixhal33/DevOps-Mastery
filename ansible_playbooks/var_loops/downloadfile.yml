@@ -1,0 +1,14 @@
+---
+- hosts: all
+  become: yes
+  vars:
+    maven: https://archive.apache.org/dist/maven/maven-3/3.9.9/binaries/apache-maven-3.9.9-bin.tar.gz
+    location: /home/nixhal
+  tasks:
+  - name: Downloading maven for java packages
+    get_url:
+      url: "{{ maven }}"
+      dest:  "{{ location }}"
+
+
+

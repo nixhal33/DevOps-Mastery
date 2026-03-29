@@ -1,0 +1,27 @@
+---
+- hosts: worker
+  become_user: root
+
+  tasks:
+  - name: Create directory
+    file:
+      path: /home/nixhal/first_playbook_dir
+      state: directory
+      owner: narendra
+      group: nixhal
+
+  - name: Create an empty file
+    file:
+      path: /home/nixhal/first_playbook_dir/workernode1.txt
+      state: touch
+      owner: narendra
+      group: narendra
+      mode: '700'
+
+  - name: Copy the files from master-node to servers
+    copy:
+      src: /home/nixhal/meronepal.lyric
+      dest: /home/nixhal/
+      owner: nixhal
+      group: narendra
+      mode: '771'

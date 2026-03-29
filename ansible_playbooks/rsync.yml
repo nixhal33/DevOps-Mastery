@@ -1,0 +1,11 @@
+---
+- hosts: servers
+  become_user: root
+
+  tasks:
+  - name: Rsync a file from one machine to another 
+    synchronize:
+      src: "{{ item }}"
+      dest: /home/nixhal/playbooks/
+    with_fileglob:
+    - "/home/nixhal/lyrics_*"
