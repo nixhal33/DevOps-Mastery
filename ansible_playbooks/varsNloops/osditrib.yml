@@ -1,0 +1,26 @@
+---
+- hosts: all
+  become_user: root
+  vars:
+   master: /home/nixhal/hhh.lyric
+   workers: /devops
+   perm: 770
+
+  tasks:
+  - name: Copy files to worker nodes
+    copy: 
+      src: "{{ master }}"
+      dest: "{{ workers }}"
+      owner: nixhal
+      group: narendra
+      mode: "{{ perm }}"
+
+  - name: Archive files
+    archive:
+      path: "{{ workers }}"
+      dest: "{{ workers }}/ansible.tar"
+    when: ansible_distribution == "Ubuntu"
+#   when: ansible_os_family == "Debian"
+ 
+# this when condition ansible_distribution & ansible_os_family both are taken from setup module ie: ansible -m setup where many things shows like entire detail of the remote vm by the ansible and used to open up about things and using these two we can send the item or send or create or anything we can do using these keywords to crud into different vms using their  flavours of linux systems
+
