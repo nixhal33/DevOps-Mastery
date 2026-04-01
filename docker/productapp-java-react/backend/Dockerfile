@@ -13,7 +13,7 @@ RUN mvn clean install -DskipTests
 RUN ls -l && ls -l target
 
 # Stage 2: Create a lightweight container with only the necessary artifacts
-FROM openjdk:21
+FROM eclipse-temurin:21-jre-alpine
 
 # Set the working directory within the container to /app
 WORKDIR /app
