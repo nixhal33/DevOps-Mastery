@@ -1,6 +1,0 @@
----
-- hosts: servers
-  become: true
-
-  roles:
-  - webapp
