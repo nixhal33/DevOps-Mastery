@@ -1,0 +1,12 @@
+version: '3.8'
+networks:
+  app_network:
+
+services:
+  frontend:
+    image: productapp-java-react_frontend:latest
+    container_name: product_webapp
+    ports:
+      - "82:80"
+    networks:
+      - app_network
