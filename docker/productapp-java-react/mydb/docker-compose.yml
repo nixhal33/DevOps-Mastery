@@ -10,7 +10,7 @@ services:
       MYSQL_USER: nix
       MYSQL_PASSWORD: nix123
     volumes:
-      - ./mysqldata:/var/lib/mysql
+#      - ./mysqldata:/var/lib/mysql
     networks:
       - app_net
 
