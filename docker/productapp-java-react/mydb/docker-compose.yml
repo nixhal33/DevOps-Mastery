@@ -1,0 +1,31 @@
+version: '3.8'
+
+services:
+  mydb:
+    image: mysql:8
+    container_name: mydb
+    environment:
+      MYSQL_ROOT_PASSWORD: root@123
+      MYSQL_DATABASE: product
+      MYSQL_USER: nix
+      MYSQL_PASSWORD: nix123
+    volumes:
+      - ./mysqldata:/var/lib/mysql
+    networks:
+      - app_net
+
+  phpmyadmin:
+    image: phpmyadmin:latest
+    container_name: phpmyadmin
+    environment:
+      PMA_HOST: mydb
+      PMA_PORT: 3306
+    ports:
+      - "8082:80"
+    networks:
+      - app_net
+
+networks:
+  app_net:
+    external: true
+
