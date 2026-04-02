@@ -1,0 +1,58 @@
+# specifying the version of docker compose file format
+version: '3.8'
+
+# Defining the service that will run into my application
+services:
+  # config for mysql db service
+  mysqldb:
+    image: mysql:8
+    container_name: mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: root123
+      MYSQL_DATABASE: products
+      MYSQL_USER: productuser
+      MYSQL_PASSWORD: productpass123
+    volumes:
+      # mounting the volume so that even my frontend fails my database won't and will mount the data into a file
+      - ./mysql_data:/var/lib/mysql
+
+  # phpmyadmin for the db ui
+  phpmyadmin:
+    image: phpmyadmin:latest
+    container_name: phpmyadmin_dbui
+    environment:
+      PMA_HOST: mysqldb
+      PMA_PORT: 3306
+    ports:
+      - "8082:80"
+    depends_on:
+      - mysqldb
+
+  # Backend configuration for server application
+  backend:
+    image: product-service
+    container_name: prodapp
+    build:
+      context: ./backend
+    ports:
+      - "8080:8080"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysqldb:3306/products?allowPublicKeyRetrieval=true&useSSL=false&serverTimezone=UTC
+      SPRING_DATASOURCE_USERNAME: productuser
+      SPRING_DATASOURCE_PASSWORD: productpass123
+    # Depends on the mysqldb service ensuring it before backend starts
+    depends_on:
+      - mysqldb
+
+  # Frontend configuration for the frontend application
+  frondtend:
+    image: frontend-webapp
+    container_name: product-webapp
+    build:
+      context: ./frontend
+    ports:
+      - "82:80"
+    #depends upon backend service ensuring it starts before frontend
+    depends_on:
+      - backend
+
