@@ -5,7 +5,7 @@ version: '3.8'
 services:
   # config for mysql db service
   mysqldb:
-    image: alpine/mysql:latest
+    image: mysql:8
     container_name: mysql
     environment:
       MYSQL_ROOT_PASSWORD: root123
@@ -37,7 +37,7 @@ services:
     ports:
       - "8080:8080"
     environment:
-      SPRING_DATASOURCE_URL: jdbc:mysql://mysqldb:3306/products
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysqldb:3306/products?allowPublicKeyRetrieval=true&useSSL=false&serverTimezone=UTC
       SPRING_DATASOURCE_USERNAME: productuser
       SPRING_DATASOURCE_PASSWORD: productpass123
     # Depends on the mysqldb service ensuring it before backend starts
