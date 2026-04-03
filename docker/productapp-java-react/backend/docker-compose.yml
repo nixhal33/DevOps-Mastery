@@ -12,6 +12,8 @@ services:
       SPRING_DATASOURCE_URL: jdbc:mysql://mydb:3306/product?allowPublicKeyRetrieval=true&useSSL=false&serverTimezone=UTC
       SPRING_DATASOURCE_USERNAME: nix
       SPRING_DATASOURCE_PASSWORD: nix123
+      SPRING_JPA_HIBERNATE_DDL_AUTO: update       
+      SPRING_JPA_SHOW_SQL: true
 
 #    volumes:
 #      - ./application.properties:/app/config/application.properties
