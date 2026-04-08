@@ -27,3 +27,4 @@ sudo ufw status
 
 # To save the jenkins password to new file
 sudo cp -r /var/lib/jenkins/secrets/initialAdminPassword .
+sudo chown nix:nix initialAdminPassword 
