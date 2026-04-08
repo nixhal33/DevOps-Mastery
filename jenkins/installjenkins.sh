@@ -25,5 +25,5 @@ sudo ufw enable
 
 sudo ufw status
 
-# To display the jenkins password
-sudo cat /var/lib/jenkins/secrets/initialAdminPassword
+# To save the jenkins password to new file
+sudo copy -r /var/lib/jenkins/secrets/initialAdminPassword .
